@@ -3,56 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earn Coins</title>
-       <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
+    <meta name="theme-color" content="#f19e36" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
+<body class="earn">
 
-    <h1>Claim Your Coins</h1>
+    <!-- Header with back link -->
+    <div class="haeder">
+        <a href="index.html">
+            <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 11.9299H2" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.00009 19L2.84009 14C2.5677 13.7429 2.35071 13.433 2.20239 13.0891C2.05407 12.7452 1.97754 12.3745 1.97754 12C1.97754 11.6255 2.05407 11.2548 2.20239 10.9109C2.35071 10.567 2.5677 10.2571 2.84009 10L8.00009 5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </div>
 
-    <!-- Claim Button -->
-    <button id="claimBtn">Claim</button>
+    <!-- Section to earn more coins -->
+    <div class="earn-more">
+        <img src="hunder.png" width="80px">
+        <h3>Earn more coins</h3>
+    </div>
+    <br><br>
 
+    <!-- List of boosters with buttons to click -->
+    <div class="boosters-button">
+        <div class="boosters-button-detail">
+            <div class="boosters-button-image">
+                <img src="you.gif" width="45px">
+            </div>
+            <div>
+                <div><h4>subscribe</h4></div>
+                <div class="boosters-button-data">
+                    <img src="hunder.png" width="20px" class="m-r-25">
+                    <h5 class="m-r-25">2500</h5>
+                    <span class="m-r-25">•</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="https://www.youtube.com/@ZeusCoinTG" class="boost-btn">
+                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 5L14.15 10C14.4237 10.2563 14.6419 10.5659 14.791 10.9099C14.9402 11.2539 15.0171 11.625 15.0171 12C15.0171 12.375 14.9402 12.7458 14.791 13.0898C14.6419 13.4339 14.4237 13.7437 14.15 14L9 19" stroke="#ffffff" opacity="0.4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Repeat for other boosters -->
+    <!-- Same structure for all the other boosters: follow us, etc. -->
+    <!-- Booster 2 (Follow us) -->
+    <div class="boosters-button">
+        <div class="boosters-button-detail">
+            <div class="boosters-button-image">
+                <img src="1.gif" width="45px">
+            </div>
+            <div>
+                <div><h4>follow us</h4></div>
+                <div class="boosters-button-data">
+                    <img src="hunder.png" width="20px" class="m-r-25">
+                    <h5 class="m-r-25">2500</h5>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="https://youtube.com/@html-hero?si=iCMCmyo6Twil2okd" class="boost-btn">
+                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 5L14.15 10C14.4237 10.2563 14.6419 10.5659 14.791 10.9099C14.9402 11.2539 15.0171 11.625 15.0171 12C15.0171 12.375 14.9402 12.7458 14.791 13.0898C14.6419 13.4339 14.4237 13.7437 14.15 14L9 19" stroke="#ffffff" opacity="0.4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Add remaining boosters as you did earlier -->
+    
+    <!-- Add the script at the end of the body -->
     <script>
-        // Check if the user has claimed coins today
-        let lastClaimDate = localStorage.getItem('lastClaimDate');
-        const today = new Date().toISOString().split('T')[0]; // Get today's date
+        const claimButtons = document.querySelectorAll('.boost-btn');
+        const coinsText = document.querySelector('.boosters-button-data h5');
+        let coins = localStorage.getItem('coins') || 0;  // Get coins from localStorage
 
-        // Reference to the claim button
-        const claimBtn = document.getElementById('claimBtn');
+        // Update the coin count on the page
+        coinsText.textContent = coins;
 
-        // Check if the user has claimed coins today
-        if (lastClaimDate === today) {
-            claimBtn.textContent = 'Claimed';  // If they already claimed, show "Claimed"
-            claimBtn.disabled = true; // Disable the button if already claimed
-        }
+        claimButtons.forEach((btn) => {
+            btn.addEventListener('click', function() {
+                // Check if the user has already claimed today (based on 'lastClaimDate')
+                const lastClaimDate = localStorage.getItem('lastClaimDate');
+                const today = new Date().toISOString().split('T')[0];  // Get today's date
 
-        // Add event listener for claim button
-        claimBtn.addEventListener('click', function () {
-            if (lastClaimDate !== today) {
-                // User has not claimed yet, so proceed to claim
-
-                // Add coins (for example, 2500 coins)
-                let coins = Number(localStorage.getItem('coins')) || 0;
-                coins += 2500;  // Add 2500 coins
-                localStorage.setItem('coins', coins);  // Update localStorage with new coin count
-
-                // Update the coin count on the page (this can be displayed on the main page too)
-                alert(`You've earned 2500 coins!`);
-
-                // Disable the button and change its text
-                claimBtn.textContent = 'Claimed';
-                claimBtn.disabled = true;
-
-                // Store the last claim date as today
-                localStorage.setItem('lastClaimDate', today);
-
-                // Redirect to a social media link after claiming
-                window.location.href = 'https://www.example.com'; // Redirect to your social media link
-            } else {
-                alert('You have already claimed today.');
-            }
+                if (lastClaimDate === today) {
+                    alert('You have already claimed your coins today!');
+                } else {
+                    // Increase coins by 2500
+                    coins = Number(coins) + 2500;
+                    localStorage.setItem('coins', coins);  // Store updated coins count in localStorage
+                    coinsText.textContent = coins;  // Update coin count on the page
+                    localStorage.setItem('lastClaimDate', today);  // Set today's date as the last claim date
+                    alert('You have earned 2500 coins!');
+                    window.location.href = this.href;  // Redirect to the corresponding link
+                }
+            });
         });
     </script>
 </body>
