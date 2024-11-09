@@ -37,14 +37,14 @@
                 <h4>Subscribe</h4>
                 <div class="boosters-button-data">
                     <img src="hunder.png" width="20px" class="m-r-25">
-                    <h5 class="m-r-25">2500</h5>
+                    <h5 id="coins1" class="m-r-25">2500</h5> <!-- Coins will be displayed here -->
                     <span class="m-r-25">•</span>
                 </div>
             </div>
         </div>
 
         <!-- Claim Button -->
-        <button id="claimBtn1" onclick="handleClaimClick(1)">Claim</button>
+        <button id="claimBtn1" onclick="handleClaimClick(1)">Open</button>
     </div>
     <br><br>
 
@@ -57,13 +57,13 @@
                 <h4>Follow Us</h4>
                 <div class="boosters-button-data">
                     <img src="hunder.png" width="20px" class="m-r-25">
-                    <h5 class="m-r-25">2500</h5>
+                    <h5 id="coins2" class="m-r-25">2500</h5> <!-- Coins will be displayed here -->
                 </div>
             </div>
         </div>
 
         <!-- Claim Button -->
-        <button id="claimBtn2" onclick="handleClaimClick(2)">Claim</button>
+        <button id="claimBtn2" onclick="handleClaimClick(2)">Open</button>
     </div>
     <br><br>
 
@@ -76,13 +76,13 @@
                 <h4>Follow Us</h4>
                 <div class="boosters-button-data">
                     <img src="hunder.png" width="20px" class="m-r-25">
-                    <h5 class="m-r-25">2500</h5>
+                    <h5 id="coins3" class="m-r-25">2500</h5> <!-- Coins will be displayed here -->
                 </div>
             </div>
         </div>
 
         <!-- Claim Button -->
-        <button id="claimBtn3" onclick="handleClaimClick(3)">Claim</button>
+        <button id="claimBtn3" onclick="handleClaimClick(3)">Open</button>
     </div>
     <br><br>
 
@@ -95,13 +95,13 @@
                 <h4>Follow Us</h4>
                 <div class="boosters-button-data">
                     <img src="hunder.png" width="20px" class="m-r-25">
-                    <h5 class="m-r-25">2500</h5>
+                    <h5 id="coins4" class="m-r-25">2500</h5> <!-- Coins will be displayed here -->
                 </div>
             </div>
         </div>
 
         <!-- Claim Button -->
-        <button id="claimBtn4" onclick="handleClaimClick(4)">Claim</button>
+        <button id="claimBtn4" onclick="handleClaimClick(4)">Open</button>
     </div>
     <br><br>
 
@@ -114,13 +114,13 @@
                 <h4>Follow Us</h4>
                 <div class="boosters-button-data">
                     <img src="hunder.png" width="20px" class="m-r-25">
-                    <h5 class="m-r-25">2500</h5>
+                    <h5 id="coins5" class="m-r-25">2500</h5> <!-- Coins will be displayed here -->
                 </div>
             </div>
         </div>
 
         <!-- Claim Button -->
-        <button id="claimBtn5" onclick="handleClaimClick(5)">Claim</button>
+        <button id="claimBtn5" onclick="handleClaimClick(5)">Open</button>
     </div>
     <br><br>
 
@@ -128,7 +128,9 @@
         // Function to handle button clicks
         function handleClaimClick(buttonId) {
             let claimButton = document.getElementById('claimBtn' + buttonId);
+            let coinsDisplay = document.getElementById('coins' + buttonId);
             let redirectUrl = '';
+            let rewardAmount = 2500; // Coins per claim
 
             // Set the social media link based on the button clicked
             switch (buttonId) {
@@ -155,12 +157,16 @@
             if (localStorage.getItem('claimed' + buttonId) === 'true') {
                 alert('You have already claimed this!');
             } else {
-                // Change the button text and style
+                // Change the button text to "Claimed"
                 claimButton.innerText = 'Claimed';
                 claimButton.disabled = true; // Disable the button after claiming
                 localStorage.setItem('claimed' + buttonId, 'true'); // Save the claim status in localStorage
+
+                // Update the coins display in the bottom left of the social bar
+                coinsDisplay.innerText = rewardAmount;
+
                 alert('You will now be redirected!');
-                
+
                 // Redirect the user to the social media link
                 window.open(redirectUrl, '_blank');
             }
@@ -172,6 +178,9 @@
                 if (localStorage.getItem('claimed' + i) === 'true') {
                     document.getElementById('claimBtn' + i).innerText = 'Claimed';
                     document.getElementById('claimBtn' + i).disabled = true;
+                    document.getElementById('coins' + i).innerText = '2500'; // Coins are displayed when claimed
+                } else {
+                    document.getElementById('claimBtn' + i).innerText = 'Open';
                 }
             }
         };
