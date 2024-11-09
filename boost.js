@@ -1,30 +1,52 @@
-// Get the coin count from localStorage
+const body = document.body;
+const today = new Date().toISOString().split('T')[0]; 
+
+
 let coins = Number(localStorage.getItem('coins')) || 0;
+const lastClaimDate = localStorage.getItem('lastClaimDate');
 
-// Function to add coins when a booster task is completed
-function addCoins(amount) {
-    coins += amount;
-    localStorage.setItem('coins', coins);  // Save the updated coin count to localStorage
-    updateCoinDisplay();  // Update the coin display on the page
+
+body.querySelector('#balance').textContent = coins.toLocaleString();
+
+
+const turbo = body.querySelector('#turbo');
+const charge = body.querySelector('#charge');
+
+
+function canClaimReward() {
+    console.log('Last claim date:', lastClaimDate); 
+    console.log('Today:', today); 
+    return lastClaimDate !== today;
 }
 
-// Function to update the coin count display
-function updateCoinDisplay() {
-    const coinCountElement = document.getElementById('coinCount');
-    if (coinCountElement) {
-        coinCountElement.textContent = coins;
+
+turbo.addEventListener('click', () => {
+    if (canClaimReward()) {
+        coins += ; 
+        localStorage.setItem('coins', coins); 
+        body.querySelector('#balance').textContent = coins.toLocaleString(); 
+        localStorage.setItem('lastClaimDate', today); 
+
+       
+        localStorage.setItem('count', '0');
+        setTimeout(() => {
+            localStorage.setItem('count', '1');
+        }, 5000);
+    } else {
+        alert('You can only claim this reward once a day.');
     }
-}
-
-// Example boosters actions (for subscribing, following, etc.)
-document.getElementById('subscribeBooster')?.addEventListener('click', () => {
-    addCoins(2500);  // Reward user with 2500 coins for subscribing
-    alert("You earned 2500 coins for subscribing!");
 });
 
-document.getElementById('followBooster')?.addEventListener('click', () => {
-    addCoins(1000);  // Reward user with 1000 coins for following
-    alert("You earned 1000 coins for following!");
-});
+charge.addEventListener('click', () => {
+    if (canClaimReward()) {
+        coins += 3; 
+        localStorage.setItem('coins', coins); 
+        body.querySelector('#balance').textContent = coins.toLocaleString(); 
+        localStorage.setItem('lastClaimDate', today); 
 
-// Add more boosters as needed, following the same pattern for each action
+        let total = localStorage.getItem('total') || 0;
+        localStorage.setItem('power', total); 
+    } else {
+        alert('You can only claim this reward once a day.');
+    }
+});
