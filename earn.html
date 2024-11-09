@@ -171,4 +171,10 @@
             for (let i = 1; i <= 5; i++) {
                 if (localStorage.getItem('claimed' + i) === 'true') {
                     document.getElementById('claimBtn' + i).innerText = 'Claimed';
-        
+                    document.getElementById('claimBtn' + i).disabled = true;
+                }
+            }
+        };
+    </script>
+</body>
+</html>
