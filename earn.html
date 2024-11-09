@@ -3,193 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earn More Coins</title>
+    <title>Earn Coins</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="responsive.css">
-    <meta name="theme-color" content="#f19e36" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body class="earn">
+<body>
 
-    <div class="haeder">
-        <a href="index.html">
-            <!-- Back Icon (optional, you can leave or remove) -->
-            <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 11.9299H2" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8.00009 19L2.84009 14C2.5677 13.7429 2.35071 13.433 2.20239 13.0891C2.05407 12.7452 1.97754 12.3745 1.97754 12C1.97754 11.6255 2.05407 11.2548 2.20239 10.9109C2.35071 10.567 2.5677 10.2571 2.84009 10L8.00009 5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </a>
-    </div>
+    <h1>Claim Your Coins</h1>
 
-    <div class="earn-more">
-        <img src="hunder.png" width="80px">
-        <h3>Earn More Coins</h3>
-    </div>
-    <br><br>
-
-    <!-- Boosters Buttons -->
-    <div class="boosters-button" id="boostersButton1">
-        <div class="boosters-button-detail">
-            <div class="boosters-button-image">
-                <img src="you.gif" width="45px">
-            </div>
-            <div>
-                <h4>Subscribe</h4>
-                <div class="boosters-button-data">
-                    <img src="hunder.png" width="20px" class="m-r-25">
-                    <h5 id="coins1" class="m-r-25">0</h5> <!-- Coins will be displayed here -->
-                    <span class="m-r-25">•</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Claim Button -->
-        <button id="claimBtn1" onclick="handleClaimClick(1)">Open</button>
-    </div>
-    <br><br>
-
-    <div class="boosters-button" id="boostersButton2">
-        <div class="boosters-button-detail">
-            <div class="boosters-button-image">
-                <img src="1.gif" width="45px">
-            </div>
-            <div>
-                <h4>Follow Us</h4>
-                <div class="boosters-button-data">
-                    <img src="hunder.png" width="20px" class="m-r-25">
-                    <h5 id="coins2" class="m-r-25">0</h5> <!-- Coins will be displayed here -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Claim Button -->
-        <button id="claimBtn2" onclick="handleClaimClick(2)">Open</button>
-    </div>
-    <br><br>
-
-    <div class="boosters-button" id="boostersButton3">
-        <div class="boosters-button-detail">
-            <div class="boosters-button-image">
-                <img src="2.gif" width="45px">
-            </div>
-            <div>
-                <h4>Follow Us</h4>
-                <div class="boosters-button-data">
-                    <img src="hunder.png" width="20px" class="m-r-25">
-                    <h5 id="coins3" class="m-r-25">0</h5> <!-- Coins will be displayed here -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Claim Button -->
-        <button id="claimBtn3" onclick="handleClaimClick(3)">Open</button>
-    </div>
-    <br><br>
-
-    <div class="boosters-button" id="boostersButton4">
-        <div class="boosters-button-detail">
-            <div class="boosters-button-image">
-                <img src="3.gif" width="45px">
-            </div>
-            <div>
-                <h4>Follow Us</h4>
-                <div class="boosters-button-data">
-                    <img src="hunder.png" width="20px" class="m-r-25">
-                    <h5 id="coins4" class="m-r-25">0</h5> <!-- Coins will be displayed here -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Claim Button -->
-        <button id="claimBtn4" onclick="handleClaimClick(4)">Open</button>
-    </div>
-    <br><br>
-
-    <div class="boosters-button" id="boostersButton5">
-        <div class="boosters-button-detail">
-            <div class="boosters-button-image">
-                <img src="4.gif" width="45px">
-            </div>
-            <div>
-                <h4>Follow Us</h4>
-                <div class="boosters-button-data">
-                    <img src="hunder.png" width="20px" class="m-r-25">
-                    <h5 id="coins5" class="m-r-25">0</h5> <!-- Coins will be displayed here -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Claim Button -->
-        <button id="claimBtn5" onclick="handleClaimClick(5)">Open</button>
-    </div>
-    <br><br>
+    <!-- Claim Button -->
+    <button id="claimBtn">Claim</button>
 
     <script>
-        // Function to handle button clicks
-        function handleClaimClick(buttonId) {
-            let claimButton = document.getElementById('claimBtn' + buttonId);
-            let coinsDisplay = document.getElementById('coins' + buttonId);
-            let redirectUrl = '';
-            let rewardAmount = 2500; // Coins per claim
+        // Check if the user has claimed coins today
+        let lastClaimDate = localStorage.getItem('lastClaimDate');
+        const today = new Date().toISOString().split('T')[0]; // Get today's date
 
-            // Set the social media link based on the button clicked
-            switch (buttonId) {
-                case 1:
-                    redirectUrl = 'https://www.youtube.com/@ZeusCoinTG';
-                    break;
-                case 2:
-                    redirectUrl = 'https://youtube.com/@html-hero?si=iCMCmyo6Twil2okd';
-                    break;
-                case 3:
-                    redirectUrl = 'https://youtube.com/@html-hero?si=iCMCmyo6Twil2okd';
-                    break;
-                case 4:
-                    redirectUrl = 'https://www.tiktok.com/@user568352647';
-                    break;
-                case 5:
-                    redirectUrl = 'https://youtube.com/@html-hero?si=iCMCmyo6Twil2okd';
-                    break;
-                default:
-                    break;
-            }
+        // Reference to the claim button
+        const claimBtn = document.getElementById('claimBtn');
 
-            // Check if the user has already claimed
-            if (localStorage.getItem('claimed' + buttonId) === 'true') {
-                // If the user has already claimed, display a message.
-                alert('You have already claimed this!');
-                return;
-            } else {
-                // Change the button text to "Claim"
-                claimButton.innerText = 'Claim';
-            }
-
-            // Now, if the user clicks on the "Claim" button after being redirected
-            claimButton.onclick = function () {
-                // Add coins to the display when clicked
-                coinsDisplay.innerText = rewardAmount;
-
-                // Mark this booster as claimed
-                localStorage.setItem('claimed' + buttonId, 'true');
-
-                // Change button text to "Claimed" after claim
-                claimButton.innerText = 'Claimed';
-                claimButton.disabled = true; // Disable button after claiming
-                alert('You have successfully claimed your reward!');
-            };
-
-            // Open the redirect URL in a new tab
-            window.open(redirectUrl, '_blank');
+        // Check if the user has claimed coins today
+        if (lastClaimDate === today) {
+            claimBtn.textContent = 'Claimed';  // If they already claimed, show "Claimed"
+            claimBtn.disabled = true; // Disable the button if already claimed
         }
 
-        // On page load, check if the boosters have been claimed
-        window.onload = function () {
-            for (let i = 1; i <= 5; i++) {
-                if (localStorage.getItem('claimed' + i) === 'true') {
-                    document.getElementById('claimBtn' + i).innerText = 'Claimed';
-                    document.getElementById('claimBtn' + i).disabled = true; // Disable claimed buttons
-                }
+        // Add event listener for claim button
+        claimBtn.addEventListener('click', function () {
+            if (lastClaimDate !== today) {
+                // User has not claimed yet, so proceed to claim
+
+                // Add coins (for example, 2500 coins)
+                let coins = Number(localStorage.getItem('coins')) || 0;
+                coins += 2500;  // Add 2500 coins
+                localStorage.setItem('coins', coins);  // Update localStorage with new coin count
+
+                // Update the coin count on the page (this can be displayed on the main page too)
+                alert(`You've earned 2500 coins!`);
+
+                // Disable the button and change its text
+                claimBtn.textContent = 'Claimed';
+                claimBtn.disabled = true;
+
+                // Store the last claim date as today
+                localStorage.setItem('lastClaimDate', today);
+
+                // Redirect to a social media link after claiming
+                window.location.href = 'https://www.example.com'; // Redirect to your social media link
+            } else {
+                alert('You have already claimed today.');
             }
-        };
+        });
     </script>
 </body>
 </html>
